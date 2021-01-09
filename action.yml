@@ -1,13 +1,25 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: "Pull reReviewsviews reminder action"
+description: "Automatically send notification"
+branding:
+  icon: "bell"
+  color: "red"
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  slack-webhook:
+    description: "Webhook URL"
     required: true
-    default: '1000'
-outputs:
-  time: # output will be available to future steps
-    description: 'The message to output'
+  channel:
+    description: "channel Name"
+    required: true
+  repo:
+    description: "repo Name"
+    required: true
+  organization:
+    description: "organization name"
+    required: false
+  slack-lookups:
+    description: "Map GitHub username to Slack user IDs"
+    required: false
+    default: false
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: "node12"
+  main: "dist/index.js"
