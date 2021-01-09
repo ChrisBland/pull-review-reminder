@@ -72,7 +72,7 @@ async function run() {
     return msg;
   });
   try {
-    await sendToSlack(slackWebhook, channel, msg);
+    await sendToSlack(slackWebhook, channel, msg.join('\n'));
   } catch (ex) {
     console.log('err', ex);
   }
