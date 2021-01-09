@@ -8,7 +8,6 @@ async function sendToSlack(url, channel, message) {
   const webhook = new IncomingWebhook(url);
   await webhook.send({
     channel: channel,
-    username: 'Pull Review Reminder',
     text: message
   })
 }
