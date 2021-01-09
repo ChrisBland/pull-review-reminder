@@ -66,15 +66,18 @@ async function run() {
   let msg = reviewsNeeds.map((pr) => {
     let msg = `${pr.title}, is waiting for your review: `
     msg += pr.requested_reviewers.map((reviewer) => {
-      console.log('reviewer', reviewer);
       let slack = getSlackName(reviewer.login);
-      console.log('slack', slack);
       return `<@${slack}>`;
     }).join(', ');
     msg += ` ${pr.html_url} \n`
     //
   });
-  await sendToSlack(slackWebhook, channel, msg);
+  try {
+    await sendToSlack(slackWebhook, channel, msg);
+  } catch (ex) {
+    console.log('err', ex);
+  }
+
 }
 
 run();
