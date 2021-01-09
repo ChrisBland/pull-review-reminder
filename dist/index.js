@@ -22,7 +22,7 @@ const axios = __webpack_require__(6545);
 const { GITHUB_TOKEN } = process.env;
 
 async function sendToSlack(url, channel, message) {
-  return await axios({
+  let resp = await axios({
     method: 'POST',
     url: url,
     data: {
@@ -31,6 +31,7 @@ async function sendToSlack(url, channel, message) {
       text: message,
     }
   });
+  console.log('resp', resp);
 }
 
 function createLookup(slackLookupKeys) {
@@ -77,6 +78,7 @@ async function run() {
     msg += ` ${pr.html_url} \n`
     return msg;
   });
+  console.log('messages', msg);
   try {
     await sendToSlack(slackWebhook, channel, msg.join('\n'));
   } catch (ex) {
