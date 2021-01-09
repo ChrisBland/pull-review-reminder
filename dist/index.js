@@ -69,7 +69,7 @@ async function run() {
       return `<@${slack}>`;
     }).join(', ');
     msg += ` ${pr.html_url} \n`
-    //
+    return msg;
   });
   try {
     await sendToSlack(slackWebhook, channel, msg);
