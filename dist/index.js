@@ -16,15 +16,21 @@ module.exports = JSON.parse("{\"name\":\"@slack/webhook\",\"version\":\"5.0.4\",
 const github = __webpack_require__(5438);
 const { IncomingWebhook } = __webpack_require__(1095);
 const core = __webpack_require__(2186);
+const axios = __webpack_require__(6545);
+
 
 const { GITHUB_TOKEN } = process.env;
 
 async function sendToSlack(url, channel, message) {
-  const webhook = new IncomingWebhook(url);
-  await webhook.send({
-    channel: channel,
-    text: message
-  })
+  return await axios({
+    method: 'POST',
+    url: url,
+    data: {
+      channel: channel,
+      username: 'Review Reminder',
+      text: message,
+    }
+  });
 }
 
 function createLookup(slackLookupKeys) {

@@ -1,15 +1,21 @@
 const github = require('@actions/github');
 const { IncomingWebhook } = require('@slack/webhook');
 const core = require('@actions/core');
+const axios = require('axios');
+
 
 const { GITHUB_TOKEN } = process.env;
 
 async function sendToSlack(url, channel, message) {
-  const webhook = new IncomingWebhook(url);
-  await webhook.send({
-    channel: channel,
-    text: message
-  })
+  return await axios({
+    method: 'POST',
+    url: url,
+    data: {
+      channel: channel,
+      username: 'Review Reminder',
+      text: message,
+    }
+  });
 }
 
 function createLookup(slackLookupKeys) {
