@@ -28,7 +28,7 @@
     "@actions/core": "^1.2.5",
     "@actions/github": "^4.0.0",
     "@slack/webhook": "^5.0.4",
-    "axios": "^0.21.1",
+    "axios": "^0.24.0",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
